@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+
+<div class="container">
+   <h1>{{users.fullname}}</h1>
+  {% if request.user.is_authenticated %}
+  <form
+  class="formclass"
+  method="POST"
+  enctype="multipart/form-data"
+  >
+  {% csrf_token %}
+
+  <div class="mb-3">
+
+    <label for="formFile" class="col-sm-2 col-form-label">Name : </label>
+    <div class="mb-3">
+      <input type="text"  name="fullname" class="form-control" id="formFile">
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label"
+    >Desciption :
+  </label>
+  <textarea
+  class="form-control"
+  name="desc"
+  id="exampleFormControlTextarea1"
+  rows="7"
+  ></textarea>
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label"
+  >Short Desc :
+</label>
+<textarea
+class="form-control"
+name="shdesc"
+id="exampleFormControlTextarea1"
+rows="1"
+></textarea>
+</div>
+ <div class="mb-3">
+    <label for="formFile" class="form-label">Image : </label>
+    
+    <input class="form-control" type="file" id="formFile" name="image" />
+  </div>
+
+<input type="submit" value="Submit" />
+</form>
+{% else %}
+<h2>wwwww</h2>
+{% endif %}
+
+</div>
+
+{% endblock %}

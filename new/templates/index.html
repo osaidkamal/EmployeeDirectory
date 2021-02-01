@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+.hh
+{
+    text-align:center;
+    margin-top:15;
+    font-weight:bold;
+    font-style:Serif;
+}
+.flex-sm-row
+{
+    font-weight:bold!important;
+}
+.card
+{
+    margin:50!important;
+    margin-left:80!important;
+    display:inline-block!important;
+    height:100px!important;
+    text-decoration: none!important;
+    
+    
+}
+.card-title
+{
+     text-decoration: none!important;
+}
+.btn-primary
+{
+    border:2px!important;
+    font-size:15px!important;
+}
+a:link, a:visited
+{
+    text-decoration:none;
+    color:black;
+}
+a:hover, a:active
+{
+    color : red;
+}
+.card-img-top{
+  width:205px!important;
+  height:192px!important;
+}
+{% endblock %}
+{% block body %}
+
+{% if request.user.is_authenticated %}   
+<form action="" method="post">
+  <h5 class ="hh">EMP DIRECTORY</h1>
+  {% for emp in employee %}
+  <div class="card" style="width: 200px;">
+    <img class="card-img-top"  src='{{ emp.image.url }}' alt="Image">
+  <div class="card-body">
+    {% if emp.name == user %}
+    <h5 class="card-title" ><a href="{% url 'update' emp.id %}" name="system">{{emp.fullname}}</a></h5>
+    <p class="card-text">{{emp.shdesc}}</p>
+  </div>
+  {% else %}
+    <h5 class="card-title" ><a href="{% url 'details' emp.id %}" name="system">{{emp.fullname}}</a></h5>
+    <p class="card-text">{{emp.shdesc}}</p>
+    {% endif %}
+     </div>
+    </div>
+   {% endfor %}
+  
+  {% endif %}
+
+  </form>
+ 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+{% endblock %}

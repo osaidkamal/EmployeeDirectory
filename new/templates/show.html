@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block css %}
+	.ss
+	{
+		width: 190px;
+	}
+{% endblock %}
+{% block body %}
+<div class="container">   
+        
+        <h1>{{ employees.fullname }}</h1></br>
+       <div class="ss"><img class="card-img-top"  src='/media/{{employees.image}}' alt="Image"></div></br>
+        <p> {{ employees.desc }}</p>
+        
+</div> 
+
+{% endblock %}
